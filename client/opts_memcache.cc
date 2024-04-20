@@ -74,7 +74,7 @@ Config parse_memcache(int argc, char *argv[])
     // unused options
     cfg.service_us = 0;
 
-    while ((c = getopt(argc, argv, "hrebi:w:s:c:W:l:m:d:n:z:k:v:u:")) != -1) {
+    while ((c = getopt(argc, argv, "hrebi:w:s:c:W:l:m:d:n:z:k:v:u:x:")) != -1) {
         switch (c) {
         case 'h':
             __printUsage(argv[0], EXIT_SUCCESS);
@@ -139,6 +139,9 @@ Config parse_memcache(int argc, char *argv[])
             break;
         case 'u':
             cfg.setget = atof(optarg);
+            break;
+        case 'x':
+            cfg.client_id = atoi(optarg);
             break;
         default:
             __printUsage(argv[0]);

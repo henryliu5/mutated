@@ -8,6 +8,7 @@
 #include "generator.hh"
 #include "opts.hh"
 #include "results.hh"
+#include "lat_tracker.h"
 
 /**
  * Mutated load generator.
@@ -15,6 +16,7 @@
 class Client
 {
   private:
+    LatencyTracker lat_tracker;
     using clock = std::chrono::steady_clock;
     using time_point = clock::time_point;
     using duration = std::chrono::nanoseconds;

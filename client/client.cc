@@ -20,7 +20,9 @@ using namespace std::placeholders;
  * Create a new client.
  */
 Client::Client(Config c)
-  : cfg_{c}
+//   : lat_tracker(0.95, "/dev/shm/memcached/lat_" + std::to_string(c.client_id) + ".txt")
+  : lat_tracker(0.95, "lat_" + std::to_string(c.client_id) + ".txt")
+  , cfg_{c}
   , rd_{}
   , randgen_{rd_()}
   , conn_dist_{0, (int)cfg_.conn_cnt - 1}
@@ -305,6 +307,8 @@ void Client::record_sample(Generator *conn, uint64_t queue_us,
     if (measure) {
         measure_count_++;
         results_.add_sample(queue_us, service_us, wait_us, bytes);
+
+        lat_tracker.add_measurement(service_us);
 
         // final measurement app-packet - record experiment time
         if (measure_count_ == measure_samples_) {

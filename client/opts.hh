@@ -65,6 +65,8 @@ struct Config {
     int gen_argc;
     char **gen_argv;
 
+    int client_id;
+
     /* Set defaults */
     Config(void)
       : protocol{SYNTHETIC}
@@ -91,6 +93,7 @@ struct Config {
       , setget{0.0}
       , gen_argc{0}
       , gen_argv{nullptr}
+      , client_id{-1}
     {
     }
 };

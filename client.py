@@ -19,7 +19,7 @@ for f in os.listdir(DIR):
 print('Starting', CLIENTS, 'clients with', TOTAL_RPS, 'total rps')
 clients = []
 for i in range(CLIENTS):
-    cmd = list(map(str, [os.path.join(DIR, 'client/mutated_memcache'), SERVER, TOTAL_RPS / CLIENTS, '-w', '5', '-W', '10000', '-x', i]))
+    cmd = list(map(str, [os.path.join(DIR, 'client/mutated_memcache'), SERVER, TOTAL_RPS / CLIENTS, '-w', '5', '-W', '10000', '-s', '120', '-x', i]))
     
     if len(sys.argv) > 3:
         cmd.append('-r')
